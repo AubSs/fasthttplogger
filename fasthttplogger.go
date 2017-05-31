@@ -45,13 +45,13 @@ func colorMethod(method []byte, code int) string {
 func getHttp(ctx *fasthttp.RequestCtx) string {
 	if ctx.Response.Header.IsHTTP11() {
 		return "HTTP/1.1"
-	} else {
-		return "HTTP/1.0"
 	}
+	return "HTTP/1.0"
 }
 
 /* ========================== Predefined Formats =========================== */
 
+// Tiny format:
 // <method> <url> - <status> - <response-time us>
 // GET / - 200 - 11.925 us
 func Tiny(req fasthttp.RequestHandler) fasthttp.RequestHandler {
@@ -67,7 +67,7 @@ func Tiny(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 		)
 	})
 }
-// Same as Tiny but colored
+// TinyColored is same as Tiny but colored
 func TinyColored(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 	return fasthttp.RequestHandler(func(ctx *fasthttp.RequestCtx) {
 		begin := time.Now()
@@ -82,6 +82,7 @@ func TinyColored(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 	})
 }
 
+// Short format:
 // <remote-addr> | <HTTP/:http-version> | <method> <url> - <status> - <response-time us>
 // 127.0.0.1:53324 | HTTP/1.1 | GET /hello - 200 - 44.8µs
 func Short(req fasthttp.RequestHandler) fasthttp.RequestHandler {
@@ -99,7 +100,7 @@ func Short(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 		)
 	})
 }
-// Same as Short but colored
+// ShortColored is same as Short but colored
 func ShortColored(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 	return fasthttp.RequestHandler(func(ctx *fasthttp.RequestCtx) {
 		begin := time.Now()
@@ -116,6 +117,7 @@ func ShortColored(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 	})
 }
 
+// Combined format:
 // [<time>] <remote-addr> | <HTTP/http-version> | <method> <url> - <status> - <response-time us> | <user-agent>
 // [2017/05/31 - 13:27:28] 127.0.0.1:54082 | HTTP/1.1 | GET /hello - 200 - 48.279µs | Paw/3.1.1 (Macintosh; OS X/10.12.5) GCDHTTPRequest
 func Combined(req fasthttp.RequestHandler) fasthttp.RequestHandler {
@@ -135,7 +137,7 @@ func Combined(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 		)
 	})
 }
-// Same as Combined but colored
+// CombinedColored is same as Combined but colored
 func CombinedColored(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 	return fasthttp.RequestHandler(func(ctx *fasthttp.RequestCtx) {
 		begin := time.Now()
