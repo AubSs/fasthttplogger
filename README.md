@@ -38,7 +38,7 @@ func main() {
 		}
 	}
 
-	fasthttp.ListenAndServe(":8080", logger.Tiny(m))
+	fasthttp.ListenAndServe(":8080", fasthttplogger.Tiny(m))
 }
 ```
 
@@ -52,7 +52,7 @@ func main() {
 	router := fasthttprouter.New()
 	router.GET("/hello/:name", Hello)
 	s := &fasthttp.Server{
-		Handler: logger.CombinedColored(router.Handler),
+		Handler: fasthttplogger.CombinedColored(router.Handler),
 		Name: "FastHttpLogger",
 	}
 	log.Fatal(s.ListenAndServe(":8080"))
