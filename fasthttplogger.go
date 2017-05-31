@@ -67,7 +67,7 @@ func Tiny(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 		)
 	})
 }
-
+// Same as Tiny but colored
 func TinyColored(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 	return fasthttp.RequestHandler(func(ctx *fasthttp.RequestCtx) {
 		begin := time.Now()
@@ -99,7 +99,7 @@ func Short(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 		)
 	})
 }
-
+// Same as Short but colored
 func ShortColored(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 	return fasthttp.RequestHandler(func(ctx *fasthttp.RequestCtx) {
 		begin := time.Now()
@@ -118,7 +118,6 @@ func ShortColored(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 
 // [<time>] <remote-addr> | <HTTP/http-version> | <method> <url> - <status> - <response-time us> | <user-agent>
 // [2017/05/31 - 13:27:28] 127.0.0.1:54082 | HTTP/1.1 | GET /hello - 200 - 48.279µs | Paw/3.1.1 (Macintosh; OS X/10.12.5) GCDHTTPRequest
-
 func Combined(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 	return fasthttp.RequestHandler(func(ctx *fasthttp.RequestCtx) {
 		begin := time.Now()
@@ -136,7 +135,7 @@ func Combined(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 		)
 	})
 }
-
+// Same as Combined but colored
 func CombinedColored(req fasthttp.RequestHandler) fasthttp.RequestHandler {
 	return fasthttp.RequestHandler(func(ctx *fasthttp.RequestCtx) {
 		begin := time.Now()
